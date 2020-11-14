@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono');
+body {
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  color: #082b08;
+  line-height: 1.5;
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+.container {
+  width: 90%;
+  max-width: 980px;
+  margin: auto;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  color: #082b08;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+
+
+/*共通section*/
+
+.section {
+  padding: 60px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.nav-link {
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+
+/* top */
+.top {
+  height: 170px;
+}
+
+/* right */
+.right {
+  height: 1000px;
+}
+
+.cal_img {
+ 
+}
+
+.cal_img:hover {
+  opacity: 0.5;
+  transform: translateY(5px);
+  transition-duration: 0.5s;
+}
+
+.pic-num {
+  width: 100px;
+}
+
