@@ -18,8 +18,8 @@ img {
 }
 
 a {
-  color: #082b08;
-  text-decoration: none;
+  color: #e981ac !important;
+  text-decoration: none !important;
 }
 
 a:hover {
@@ -49,7 +49,7 @@ a:hover {
 
 /* top */
 .top {
-  height: 170px;
+  height: 100px;
 }
 
 /* right */
@@ -58,7 +58,7 @@ a:hover {
 }
 
 .cal_img {
- 
+  width: 30%;
 }
 
 .cal_img:hover {
@@ -71,3 +71,11 @@ a:hover {
   width: 100px;
 }
 
+
+/* image */
+#preview img{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 10px;
+}
