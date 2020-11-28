@@ -57,11 +57,26 @@
   }
 
 
+  // 削除機能
+  //削除番号が空でない時
+  if(!empty($_POST["delName"])){
+    $delName=$_POST["delName"];
 
+    $sql = 'SELECT * FROM table_1';
+    $stmt = $db->query($sql);
+    $results = $stmt->fetchAll();
 
-
-
-
+    foreach ($results as $row){
+      if($delName == $row['name']){
+        $delName=$_POST["delName"];
+        $sql = "delete from table_1 where name=:name";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':name', $delName, PDO::PARAM_STR);
+        $stmt->execute();
+      }
+    }
+            
+  }
   ?>
   
   <header>
@@ -83,7 +98,7 @@
           <div class="form-group">
             名前：<input class="form-control mr-3" name="name" type="text" placeholder="ニックネーム">
           </div>
-          <!-- マールアドレス -->
+          <!-- メールアドレス -->
           <div class="form-group">
             メールアドレス：<input class="form-control mr-3" type="email" name="email" placeholder="メースアドレス">
           </div>
@@ -91,11 +106,76 @@
             <span class="btn btn-outline-dark">登録<input class="form-control" type="submit" name="submit" style="display: none;"></span>
           </label>
         </form>
+
+        
         <?php
           echo $action_txt;
+          echo "<hr>";
+          echo "名前を選択してください";
         ?>
 
+        <!-- 削除フォーム -->
+          <form class="form-inline" action="" method="post" enctype="multipart/form-data" >
+          <div class="form-group">
+            <select id="inputState" name="delName" class="form-control mr-3">
+              <option selected>なまえ</option>
+              <?php
+              // データベース接続
+              try {
+                $db = new PDO('mysql:dbname=mydb;host=localhost;charset=utf8','root','root');
+              } catch(PDOException $e) {
+                //例外処理
+                echo 'DB接続エラー:'. $e->getMessage();
+              }
 
+              $sql = 'SELECT * FROM table_1';
+              $stmt = $db->query($sql);
+              $results = $stmt->fetchAll();
+              
+              foreach ($results as $row){
+                //選択肢にtable_1のidが入る
+                ?><option><?php
+                echo $row['name'];
+              ?></option><?php
+              }
+            ?>
+            </select>
+          </div>
+          <label>
+            <span class="btn btn-outline-dark mr-3">削除<input class="form-control" type="submit" name="submit" style="display: none;"></span>
+          </label>
+
+          <!-- テーブルの削除（メンバー登録取り消し）
+          <label>
+            <span class="btn btn-outline-dark">すべて削除<input class="form-control" type="button" onClick="kakunin()" style="display: none;"></span>
+          </label> -->
+        </form>
+
+        <script>
+          // function kakunin(){
+          //   ret = confirm("登録者をすべて削除しますがよろしいですか？");
+          //   if (ret == true){
+          //     $sql = 'DROP TABLE tbtest';
+          //     $stmt = $pdo->query($sql);
+          //   }
+          // }        
+        </script>
+        <?php
+            // 登録者一覧の表示
+            $sql = 'SELECT * FROM table_1';
+            $stmt = $db->query($sql);
+            $results = $stmt->fetchAll();
+
+            foreach ($results as $row){
+              echo $row['name']."　　";
+              echo $row['email'];
+              echo "<br>";
+            }
+
+        ?>
+
+        <?php
+        ?>
       </div>
 
     </div>
