@@ -1,3 +1,4 @@
+// 複数写真選択のプレビュー
 function loadImage(obj)
 {
 	document.getElementById('preview').innerHTML = '<p>プレビュー</p>';

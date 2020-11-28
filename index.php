@@ -28,13 +28,13 @@
     <div class="container">
       <div class="top py-3"> 
         <!-- 写真アップロード -->
-        <form class="form-inline" action="upload.php" method="post" enctype="multipart/form-data" >
+        <form class="form-inline" action="index.php" method="post" enctype="multipart/form-data"> 
           <!-- 写真選択 -->
           <label>
-            <span class="btn btn-outline-dark mr-5">写真を選択<input type="file" accept='image/*' onchange="loadImage(this);" multiple name="upload_file[] image" style="display:none"></span>
+            <span class="btn btn-outline-dark mr-5" name="upload_file[]">写真を選択<input type="file" accept='image/*' name="image" onchange="loadImage(this);" multiple  style="display:none" ></span>
           </label>
           <!-- 名前を選択 -->
-          <select id="inputState" name="name_2" class="form-control mr-5">
+          <select id="inputState" name="name" class="form-control mr-5">
             <option selected>名前を選択</option>
             <?php
             // データベース接続
@@ -62,7 +62,7 @@
             <span class="btn btn-outline-dark">登録<input class="form-control" type="submit" style="display: none;"></span>
           </label>
         </form>
-     
+      <?php require("upload.php"); ?>
       </div>
    
     </div>
@@ -94,7 +94,10 @@
     </div>
   </main>
   <footer>
-
+  <?php
+  // echo $_POST["name"];
+  // echo $_FILES["image"]["name"];
+  ?>
   </footer>
 </body>
 </html>
