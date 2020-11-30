@@ -1,3 +1,8 @@
+<?php
+require_once "./dbc.php";
+$files = getAllFile();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,14 +32,17 @@
   <main>
     <div class="container">
       <div class="top py-3"> 
-        <!-- 写真アップロード -->
+        <!-- 写真アップロード （複数枚撰択可能）-->
         <form class="form-inline" action="index.php" method="post" enctype="multipart/form-data"> 
-          <!-- 写真選択 -->
+          <!-- 写真選択 (画像だけ撰択) -->
           <label>
-            <span class="btn btn-outline-dark mr-5" name="upload_file[]">写真を選択<input type="file" accept='image/*' name="image" onchange="loadImage(this);" multiple  style="display:none" ></span>
+            <div class="file-up">
+            <input type="hidden" name="MAX/FILE_SIZE" value="1048576">
+              <span class="btn btn-outline-dark mr-5" name="upload_file[]">写真を選択<input type="file" accept='image/*' name="image" onchange="loadImage(this);" multiple  style="display:none" ></span>
+            </div>
           </label>
           <!-- 名前を選択 -->
-          <select id="inputState" name="name" class="form-control mr-5">
+          <select id="inputState" name="userName" class="form-control mr-5">
             <option selected>名前を選択</option>
             <?php
             // データベース接続
@@ -69,14 +77,15 @@
     <div class="container">
       <div class="row">
         <div class="left col-md-8">
-
         <!-- プレビューを表示 -->
         <br>
         <p id="preview"></p> 
         <hr>
-
+          <?php foreach($files as $file): ?>
+              <img src="<?php echo "{$file['file_path']}" ?>" alt="">
+              <p><?php echo "{$file['user_name']}" ?></p>
+          <?php endforeach; ?>
         </div>
-
         <div class="right col-md-4 bg-light py-3">
           <!-- <img class="cal_img" src="/img/callender.png" alt=""> -->
           <form class="form-inline">

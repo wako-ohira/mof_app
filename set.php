@@ -115,7 +115,7 @@
         ?>
 
         <!-- 削除フォーム -->
-          <form class="form-inline" action="" method="post" enctype="multipart/form-data" >
+          <form class="form-inline mb-3" action="" method="post" enctype="multipart/form-data" >
           <div class="form-group">
             <select id="inputState" name="delName" class="form-control mr-3">
               <option selected>なまえ</option>
@@ -144,23 +144,10 @@
           <label>
             <span class="btn btn-outline-dark mr-3">削除<input class="form-control" type="submit" name="submit" style="display: none;"></span>
           </label>
-
-          <!-- テーブルの削除（メンバー登録取り消し）
-          <label>
-            <span class="btn btn-outline-dark">すべて削除<input class="form-control" type="button" onClick="kakunin()" style="display: none;"></span>
-          </label> -->
         </form>
 
-        <script>
-          // function kakunin(){
-          //   ret = confirm("登録者をすべて削除しますがよろしいですか？");
-          //   if (ret == true){
-          //     $sql = 'DROP TABLE tbtest';
-          //     $stmt = $pdo->query($sql);
-          //   }
-          // }        
-        </script>
         <?php
+            echo "登録メンバー一覧"."<br>";
             // 登録者一覧の表示
             $sql = 'SELECT * FROM table_1';
             $stmt = $db->query($sql);
