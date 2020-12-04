@@ -13,6 +13,17 @@ $files = getAllFile();
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <title>Document</title>
   <script src="js/preview.js"></script>
+  <script src="js/calldata.js"></script>
+  <!-- pickadate.js プラグイン-->
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="lib/picker.js"></script>
+  <script src="lib/picker.date.js"></script>
+  <script src="lib/picker.time.js"></script>
+  <script src="lib/legacy.js"></script>
+  <link rel="stylesheet" href="lib/themes/default.css" id="theme_base">
+  <link rel="stylesheet" href="lib/themes/default.date.css" id="theme_date">
+  <script src="lib/translations/ja_JP.js"></script>
+
 </head>
 <body>
   <header>
@@ -77,17 +88,26 @@ $files = getAllFile();
     <div class="container">
       <div class="row">
         <div class="left col-md-8">
-        <!-- プレビューを表示 -->
-        <br>
-        <p id="preview"></p> 
-        <hr>
-          <?php foreach($files as $file): ?>
-              <img src="<?php echo "{$file['file_path']}" ?>" alt="">
-              <p><?php echo "{$file['user_name']}" ?></p>
-          <?php endforeach; ?>
+          <!-- プレビューを表示 -->
+          <br>
+          <p id="preview"></p> 
+          <hr>
+
+          <div class="row row-cols-1 row-cols-md-3">
+            <?php foreach($files as $file): ?>
+              <div class="col mb-4">
+                <div class="card">
+                  <img src="<?php echo "{$file['file_path']}" ?>" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-title"><?php echo "{$file['id']}"." "."{$file['user_name']}" ?></p>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+
         </div>
         <div class="right col-md-4 bg-light py-3">
-          <!-- <img class="cal_img" src="/img/callender.png" alt=""> -->
           <form class="form-inline">
             <div class="form-group">
               <input type="image" src="img/callender.png" class="cal_img form-control">
@@ -95,18 +115,16 @@ $files = getAllFile();
             <div class="row">
               <div class="col-md-2 form-group">
                 <input type="text" class="form-control w-20" placeholder="番号">
+                <input type="text" class="datepicker" id="date_box">
               </div>
-          </div>
-        </form>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </main>
   <footer>
-  <?php
-  // echo $_POST["name"];
-  // echo $_FILES["image"]["name"];
-  ?>
+
   </footer>
 </body>
 </html>
