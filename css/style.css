@@ -61,11 +61,11 @@ a:hover {
   width: 30%;
 }
 
-.cal_img:hover {
+/* .cal_img:hover {
   opacity: 0.5;
   transform: translateY(5px);
   transition-duration: 0.5s;
-}
+} */
 
 .pic-num {
   width: 100px;
